@@ -1,12 +1,19 @@
 # Visual Studio 2026-inspired UX for VS Code
 
-UI and UX customizations created specifically for C++ development, making
-Visual Studio Code feel more familiar to Visual Studio 2026 users.
+A rather niche VS Code customization for C++ developers. I’ve used Visual
+Studio for many years and currently use Visual Studio 2026, but I also have to
+do a lot of development directly on Linux systems. VS Code seems like the best
+option there, so I’ve created not only a theme, but also several UX
+modifications that match the behavior of Visual Studio 2026. This reduces the
+visual and behavioral readjustment required every time I switch IDEs, saving
+me time and mental energy.
 
-I created this because I regularly switch between Visual Studio and Linux
-development environments. The goal is not to produce an exact clone, but to
-reduce the visual and behavioral readjustment required when moving between
-the two editors.
+I’m not trying to create an exact clone. The goal is simply to make it feel
+subconsciously familiar, reducing the cognitive effort required to quickly
+identify UI elements and adapt to behaviors that differ significantly from
+Visual Studio.
+
+![VS2026 for VS Code](media/screenshot.png)
 
 ## Features
 

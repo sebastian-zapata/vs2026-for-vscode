@@ -22,7 +22,9 @@ Visual Studio.
 * Customized tab appearance and behavior
 * Customized scrolling and scrollbar behavior
 * Matching UI spacing, borders, and visual details
-* Font-rendering adjustments
+* Sebastian Zapata Console, a Cascadia Code derivative tuned to closely match
+  Visual Studio 2026 on Linux systems
+* FreeType tuning for Visual Studio-like text rendering on Linux
 * C++ syntax-color customizations
 
 The customization consists of VS Code settings together with custom CSS and

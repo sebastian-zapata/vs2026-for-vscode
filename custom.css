@@ -1,0 +1,874 @@
+/*
+ * VS2026 for VS Code
+ *
+ * Copyright (c) 2026 Sebastian Zapata
+ * SPDX-License-Identifier: MIT
+ */
+
+.monaco-editor .view-rulers .view-ruler {
+    background-image: repeating-linear-gradient(
+        to bottom,
+        #3C3930 0,
+        #3C3930 2px,
+        transparent 2px,
+        transparent 6px
+    ) !important;
+    background-position: left top !important;
+    background-repeat: repeat-y !important;
+    background-size: 2px 6px !important;
+    border-left: none !important;
+    box-shadow: none !important;
+}
+
+.monaco-editor .scroll-decoration {
+    box-shadow: none !important;
+}
+
+.monaco-workbench .part.sidebar,
+.monaco-workbench .part.panel {
+    border-radius: var(--ui-radius) !important;
+    border: 1px solid var(--ui-border-color) !important;
+    box-sizing: border-box !important;
+    overflow: clip !important;
+}
+
+.monaco-workbench .part.sidebar {
+    --ui-scrollbar-padding-left:
+        var(--ui-sidebar-scrollbar-padding);
+    --ui-scrollbar-padding-right:
+        var(--ui-sidebar-scrollbar-padding);
+    --ui-scrollbar-width: calc(
+        var(--ui-sidebar-scrollbar-padding) +
+        var(--ui-scrollbar-thumb-width) +
+        var(--ui-sidebar-scrollbar-padding)
+    );
+    height: calc(100% - var(--ui-gap)) !important;
+}
+
+.monaco-workbench .part.sidebar > .content {
+    height: calc(
+        100% - var(--ui-panel-title-height)
+    ) !important;
+}
+
+.monaco-workbench .part.sidebar > .content
+> .composite,
+.monaco-workbench .part.sidebar > .content
+> .composite > .monaco-pane-view,
+.monaco-workbench .part.sidebar > .content
+> .composite > .monaco-pane-view
+> .monaco-split-view2.vertical,
+.monaco-workbench .part.sidebar > .content
+> .composite > .monaco-pane-view
+> .monaco-split-view2.vertical
+> .monaco-scrollable-element,
+.monaco-workbench .part.sidebar > .content
+> .composite > .monaco-pane-view
+> .monaco-split-view2.vertical
+> .monaco-scrollable-element
+> .split-view-container {
+    height: 100% !important;
+}
+
+.monaco-workbench .part.sidebar > .content
+.split-view-container > .split-view-view {
+    height:
+        var(--ui-sidebar-view-height) !important;
+    top:
+        var(--ui-sidebar-view-top) !important;
+}
+
+.monaco-workbench .part.sidebar > .content
+.split-view-container > .split-view-view
+> .pane {
+    height: 100% !important;
+}
+
+.monaco-workbench .part.sidebar > .content
+.split-view-container > .split-view-view
+> .pane.expanded > .pane-body {
+    height: calc(
+        100% - var(--ui-pane-header-height)
+    ) !important;
+}
+
+.monaco-workbench .part.panel {
+    height: calc(100% - var(--ui-gap)) !important;
+    width: calc(100% - var(--ui-gap)) !important;
+}
+
+.monaco-workbench .part.panel > .content {
+    height: calc(
+        100% - var(--ui-panel-title-height)
+    ) !important;
+}
+
+.monaco-workbench .part.panel > .content
+> .composite.panel:has(.pane-body.output-view),
+.monaco-workbench .part.panel > .content
+> .composite.panel:has(.pane-body.output-view)
+:is(
+    .monaco-pane-view,
+    .monaco-split-view2.vertical,
+    .monaco-scrollable-element,
+    .split-view-container,
+    .split-view-view,
+    .pane.expanded,
+    .pane-body.output-view
+) {
+    height: 100% !important;
+}
+
+.monaco-workbench :is(.part.sidebar, .part.panel)
+.scrollbar.vertical {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    left: auto !important;
+    width: var(--ui-scrollbar-width) !important;
+}
+
+.monaco-workbench .part.sidebar
+.scrollbar.vertical {
+    bottom: 0 !important;
+    height: auto !important;
+    right: 2px !important;
+    top: 0 !important;
+}
+
+.monaco-workbench .part.sidebar
+.pane-body .monaco-scrollable-element
+> .scrollbar.vertical.fade,
+.monaco-workbench .part.sidebar
+.pane-body .monaco-scrollable-element
+> .scrollbar.vertical.fade > .slider {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.monaco-workbench .part.sidebar
+.pane-body .monaco-scrollable-element:has(
+    > .scrollbar.vertical:is(.fade, .visible)
+) > .monaco-list-rows {
+    width: calc(
+        100% - var(--ui-scrollbar-width)
+    ) !important;
+}
+
+.monaco-workbench .part.sidebar
+.pane-body .monaco-scrollable-element:has(
+    > .scrollbar.vertical:is(.fade, .visible)
+) > .monaco-list-rows > .monaco-list-row {
+    max-width: 100% !important;
+}
+
+.monaco-workbench .part.panel
+.scrollbar.vertical {
+    right: var(--ui-gap) !important;
+}
+
+.monaco-workbench :is(.part.sidebar, .part.panel)
+.scrollbar.vertical > .slider {
+    left: var(--ui-scrollbar-padding-left) !important;
+    right: auto !important;
+    width: var(--ui-scrollbar-thumb-width) !important;
+}
+
+.monaco-workbench :is(.part.sidebar, .part.panel)
+.scrollbar.vertical::before {
+    border-radius: 999px;
+    bottom: var(--ui-scrollbar-track-bottom-gap);
+    content: "";
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: var(--ui-scrollbar-track-top-gap);
+}
+
+.monaco-workbench .part.panel
+.scrollbar.vertical::before {
+    background-color: var(--vscode-editor-background);
+}
+
+.monaco-workbench .part.sidebar
+.scrollbar.vertical::before {
+    background-color: var(--vscode-sideBar-background);
+    bottom: calc(
+        var(--ui-sidebar-view-overflow, 0px) +
+        var(--ui-scrollbar-track-bottom-gap)
+    );
+}
+
+.monaco-workbench .part.sidebar
+.explorer-folders-view .scrollbar.vertical::before {
+    bottom: var(--ui-scrollbar-track-bottom-gap);
+}
+
+.monaco-workbench .part.panel
+.scrollbar.vertical:hover::before {
+    background-color: #2a2a29;
+}
+
+.monaco-workbench .part.sidebar
+.scrollbar.vertical:hover::before {
+    background-color: color-mix(
+        in srgb,
+        var(--vscode-sideBar-background) 95%,
+        white
+    );
+}
+
+.monaco-workbench .part.panel
+.monaco-pane-view
+> .monaco-split-view2.vertical
+> .monaco-scrollable-element
+> .scrollbar.vertical {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+.monaco-workbench .part.panel
+.pane-body.output-view
+.decorationsOverviewRuler {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+.monaco-workbench .part.panel
+.pane-body.output-view {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.monaco-workbench .part.panel
+.pane-body.output-view
+> .viewpane-filter-container {
+    flex: 0 0 auto !important;
+}
+
+.monaco-workbench .part.panel
+.pane-body.output-view > .monaco-editor {
+    flex: 1 1 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+.monaco-workbench .part.panel
+.pane-body.output-view
+.monaco-editor > .overflow-guard {
+    height: 100% !important;
+}
+
+.monaco-workbench .part.panel
+.pane-body.output-view
+.monaco-editor > .overflow-guard
+> .monaco-scrollable-element.editor-scrollable {
+    bottom: 0 !important;
+    height: auto !important;
+    top: 0 !important;
+}
+
+.monaco-workbench .part.panel
+.pane-body.output-view
+.monaco-editor > .overflow-guard
+> .monaco-scrollable-element.editor-scrollable
+> .scrollbar.vertical {
+    bottom: 0 !important;
+    height: auto !important;
+    top: 0 !important;
+}
+
+.monaco-workbench .part.panel
+.pane-body.output-view
+.monaco-editor > .overflow-guard
+> .monaco-scrollable-element.editor-scrollable
+> .scrollbar.horizontal {
+    bottom: 0 !important;
+    top: auto !important;
+}
+
+.monaco-workbench .part.editor
+.monaco-editor .decorationsOverviewRuler {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+.monaco-workbench .part.editor > .content {
+    background-color: #1c1c1c !important;
+}
+
+.monaco-workbench .part.editor > .content > .grid-view-container {
+    --ui-editor-border-color: var(--ui-border-color);
+    border-radius: var(--ui-radius) !important;
+    box-sizing: border-box !important;
+    height: calc(100% - var(--ui-gap)) !important;
+    margin-left: var(--ui-gap) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    width: calc(
+        100% - var(--ui-gap) - var(--ui-gap)
+    ) !important;
+}
+
+.monaco-workbench .part.editor > .content
+.grid-view-container .monaco-split-view2.horizontal
+> .monaco-scrollable-element
+> .split-view-container
+> .split-view-view:has(> .editor-group-container) {
+    box-sizing: border-box !important;
+    padding-left: calc(var(--ui-gap) / 2) !important;
+    padding-right: calc(var(--ui-gap) / 2) !important;
+}
+
+.monaco-workbench .part.editor > .content
+.grid-view-container .monaco-split-view2.horizontal
+> .monaco-scrollable-element
+> .split-view-container
+> .split-view-view:first-child {
+    padding-left: 0 !important;
+}
+
+.monaco-workbench .part.editor > .content
+.grid-view-container .monaco-split-view2.horizontal
+> .monaco-scrollable-element
+> .split-view-container
+> .split-view-view:last-child {
+    padding-right: 0 !important;
+    right: 0 !important;
+    width: auto !important;
+}
+
+.monaco-workbench .part.editor
+.editor-group-container > .editor-container {
+    height: calc(
+        100% -
+        var(
+            --ui-editor-frame-top,
+            calc(var(--ui-tab-height) - 1px)
+        ) -
+        1px
+    ) !important;
+    width: 100% !important;
+}
+
+.monaco-workbench .part.editor
+.editor-group-container > .editor-container
+> .editor-instance,
+.monaco-workbench .part.editor
+.editor-group-container > .editor-container
+> .editor-instance > .monaco-editor,
+.monaco-workbench .part.editor
+.editor-group-container > .editor-container
+> .editor-instance > .monaco-editor
+> .overflow-guard {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.monaco-workbench .part.editor
+.editor-group-container > .editor-container
+> .editor-instance > .monaco-editor
+> .overflow-guard
+> .monaco-scrollable-element.editor-scrollable {
+    bottom: 0 !important;
+    height: auto !important;
+    right: 0 !important;
+    top: 0 !important;
+    width: auto !important;
+}
+
+.monaco-workbench .part.editor
+.editor-group-container > .editor-container
+> .editor-instance > .monaco-editor
+> .overflow-guard
+> .monaco-scrollable-element.editor-scrollable
+> .scrollbar.vertical {
+    bottom: 0 !important;
+    height: auto !important;
+    left: auto !important;
+    right: 0 !important;
+    top: 0 !important;
+}
+
+.monaco-workbench .part.editor
+.monaco-editor .scrollbar.vertical {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: var(--ui-scrollbar-width) !important;
+}
+
+.monaco-workbench .part.editor
+.monaco-editor .scrollbar.vertical > .slider {
+    left: var(--ui-scrollbar-padding-left) !important;
+    right: auto !important;
+    width: var(--ui-scrollbar-thumb-width) !important;
+}
+
+.monaco-workbench .part.editor
+.monaco-editor .scrollbar.vertical::before {
+    background-color: var(--vscode-editor-background);
+    border-radius: 999px;
+    bottom: var(--ui-scrollbar-track-bottom-gap);
+    content: "";
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: var(--ui-scrollbar-track-top-gap);
+}
+
+.monaco-workbench .part.editor
+.monaco-editor .scrollbar.vertical:hover::before {
+    background-color: #2a2a29;
+}
+
+.monaco-workbench :is(
+    .part.editor,
+    .part.sidebar,
+    .part.panel
+) .scrollbar.vertical > .slider,
+.monaco-workbench :is(
+    .part.editor,
+    .part.sidebar,
+    .part.panel
+) .scrollbar.vertical > .slider:hover,
+.monaco-workbench :is(
+    .part.editor,
+    .part.sidebar,
+    .part.panel
+) .scrollbar.vertical > .slider.active {
+    background-color: transparent !important;
+}
+
+.monaco-workbench :is(
+    .part.editor,
+    .part.sidebar,
+    .part.panel
+) .scrollbar.vertical > .slider::after {
+    background-color: #9e9e9e;
+    border-radius: 999px;
+    bottom: var(--ui-scrollbar-tip-inset);
+    content: "";
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: var(--ui-scrollbar-tip-inset);
+}
+
+.monaco-workbench :is(
+    .part.editor,
+    .part.sidebar,
+    .part.panel
+) .scrollbar.vertical > .slider::after {
+    bottom: calc(
+        var(--ui-gap) + var(--ui-scrollbar-padding)
+    );
+    top: 0;
+}
+
+.monaco-workbench .part.editor
+.monaco-editor .scrollbar.vertical > .slider::after {
+    bottom: var(
+        --ui-editor-scrollbar-thumb-visual-bottom,
+        calc(
+            var(--ui-gap) +
+            var(--ui-scrollbar-track-bottom-gap) +
+            var(--ui-scrollbar-thumb-bottom-gap)
+        )
+    );
+    height: var(
+        --ui-editor-scrollbar-thumb-visual-height,
+        auto
+    );
+    top: var(
+        --ui-editor-scrollbar-thumb-visual-top,
+        calc(
+            var(--ui-scrollbar-track-top-gap) +
+            var(--ui-scrollbar-thumb-top-gap)
+        )
+    );
+}
+
+.monaco-workbench :is(.part.sidebar, .part.panel)
+.scrollbar.vertical > .slider::after {
+    bottom: calc(
+        var(--ui-scrollbar-track-bottom-gap) +
+        var(--ui-scrollbar-thumb-bottom-gap)
+    );
+    top: calc(
+        var(--ui-scrollbar-track-top-gap) +
+        var(--ui-scrollbar-thumb-top-gap)
+    );
+}
+
+.monaco-workbench .part.sidebar
+.scrollbar.vertical > .slider::after {
+    bottom: calc(
+        var(--ui-sidebar-view-overflow, 0px) +
+        var(--ui-scrollbar-track-bottom-gap) +
+        var(--ui-scrollbar-thumb-bottom-gap)
+    );
+}
+
+.monaco-workbench .part.panel
+.pane-body.output-view
+.scrollbar.vertical > .slider::after {
+    bottom: calc(
+        var(--ui-output-scrollbar-overflow, 0px) +
+        var(--ui-scrollbar-track-bottom-gap) +
+        var(--ui-scrollbar-thumb-bottom-gap)
+    );
+}
+
+.monaco-workbench .part.editor > .content
+.grid-view-container
+.monaco-split-view2.horizontal.separator-border
+> .monaco-scrollable-element
+> .split-view-container
+> .split-view-view:not(:first-child):has(
+    > .editor-group-container
+)::before {
+    content: none !important;
+}
+
+.monaco-workbench .part.editor > .content
+> .grid-view-container:focus-within {
+    --ui-editor-border-color: var(--ui-border-focused-color);
+}
+
+.monaco-workbench .part.editor .editor-group-container {
+    --ui-editor-border-color: var(--ui-border-color);
+    --ui-tab-border-color: var(--ui-editor-border-color);
+    border-radius: var(--ui-radius) !important;
+    overflow: clip !important;
+    position: relative !important;
+}
+
+.monaco-workbench .part.editor
+.editor-group-container::after {
+    border-color: var(--ui-editor-border-color) !important;
+    border-radius:
+        0 0 var(--ui-radius) var(--ui-radius) !important;
+    border-style: solid !important;
+    border-width: 0 1px 1px !important;
+    bottom: 0;
+    box-sizing: border-box !important;
+    content: "";
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: var(--ui-editor-frame-top, var(--ui-tab-height));
+    z-index: 34;
+}
+
+.monaco-workbench .part.editor
+.editor-group-container:focus-within {
+    --ui-editor-border-color:
+        var(--ui-border-focused-color);
+}
+
+.monaco-workbench .part.editor .tabs-and-actions-container,
+.monaco-workbench .part.editor .tabs-container,
+.monaco-workbench .part.editor
+.tabs-and-actions-container > .editor-actions {
+    background-color:
+        var(--vscode-editorGroupHeader-tabsBackground) !important;
+}
+
+.monaco-workbench .part.editor .tabs-and-actions-container {
+    border-bottom: none !important;
+    box-sizing: border-box !important;
+}
+
+.monaco-workbench .part.editor
+.editor-group-container:not(
+    :has(
+        .tabs-container > .tab.last-in-row
+        ~ .tab.last-in-row
+    )
+) > .title {
+    height: var(--ui-tab-height) !important;
+    max-height: var(--ui-tab-height) !important;
+    min-height: var(--ui-tab-height) !important;
+}
+
+.monaco-workbench .part.editor
+.editor-group-container:not(
+    :has(
+        .tabs-container > .tab.last-in-row
+        ~ .tab.last-in-row
+    )
+) > .title :is(
+    .tabs-and-actions-container,
+    .tabs-container,
+    .editor-actions
+) {
+    height: var(--ui-tab-height) !important;
+    max-height: var(--ui-tab-height) !important;
+    min-height: var(--ui-tab-height) !important;
+}
+
+.monaco-workbench .part.editor .tabs-container {
+    overflow: clip !important;
+    position: relative !important;
+}
+
+.monaco-workbench .part.editor > .content
+.editor-group-container > .title.tabs
+.tabs-and-actions-container.wrapping.wrapping
+.tabs-container {
+    overflow: clip !important;
+}
+
+.monaco-workbench .part.editor .tabs-container::before {
+    border-bottom:
+        1px solid var(--ui-tab-border-color) !important;
+    bottom: 0;
+    content: "";
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+}
+
+.monaco-workbench .part.editor .tabs-container::after {
+    align-self: stretch;
+    border-bottom:
+        1px solid var(--ui-tab-border-color) !important;
+    box-sizing: border-box !important;
+    content: "";
+    flex: 1 0 0;
+    min-width: 0;
+    pointer-events: none;
+}
+
+.monaco-workbench .part.editor
+.tabs-and-actions-container > .editor-actions {
+    border-bottom:
+        1px solid var(--ui-tab-border-color) !important;
+    box-sizing: border-box !important;
+}
+
+.monaco-workbench .part.editor .tabs-container > .tab {
+    background-color:
+        var(--vscode-editorGroupHeader-tabsBackground) !important;
+    border: 1px solid transparent !important;
+    border-bottom-color:
+        var(--ui-tab-border-color) !important;
+    border-radius:
+        var(--ui-radius) var(--ui-radius) 0 0 !important;
+    box-sizing: border-box !important;
+    height: var(--ui-tab-height) !important;
+}
+
+.monaco-workbench .part.editor
+.tabs-container > .tab .tab-label .label-name {
+    color: #d7d7d7 !important;
+    font-family: "Segoe UI", sans-serif !important;
+    font-size: 12px !important;
+    position: relative !important;
+    top: -5px !important;
+}
+
+.monaco-workbench .part.editor
+.tabs-container > .tab .tab-label::before {
+    display: none !important;
+}
+
+.monaco-workbench .part.editor
+.tabs-container > .tab.active .tab-label .label-name {
+    color: #fff !important;
+    /*font-weight: 600 !important;*/
+}
+
+.monaco-workbench .part.editor > .content
+.editor-group-container > .title
+> .tabs-and-actions-container.wrapping
+.tabs-container > .tab.last-in-row.last-in-row {
+    border-right-color: transparent !important;
+    border-right-style: solid !important;
+    border-right-width: 1px !important;
+    flex-grow: 0 !important;
+}
+
+.monaco-workbench .part.editor > .content
+.editor-group-container > .title
+> .tabs-and-actions-container.wrapping
+.tabs-container > .tab.active.last-in-row.last-in-row {
+    border-right-color:
+        var(--ui-tab-border-color) !important;
+}
+
+/* Inactive tabs located above the final tab row. */
+.monaco-workbench .part.editor .tabs-container
+> .tab.last-in-row:not(.active):has(~ .tab.last-in-row),
+.monaco-workbench .part.editor .tabs-container
+> .tab:not(.active):not(.last-in-row):has(
+    ~ .tab.last-in-row ~ .tab.last-in-row
+) {
+    border-bottom-color: transparent !important;
+    border-radius: var(--ui-radius) !important;
+}
+
+.monaco-workbench .part.editor
+.tabs-container > .tab:not(.active):hover {
+    background-color:
+        var(--vscode-tab-inactiveBackground) !important;
+}
+
+.monaco-workbench .part.editor .tabs-container > .tab.active {
+    background-color: var(--vscode-editor-background) !important;
+    border-color: var(--ui-tab-border-color) !important;
+    border-radius: var(--ui-radius) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* Active tab located in the final, editor-adjacent row. */
+.monaco-workbench .part.editor .tabs-container > :is(
+    .tab.active.last-in-row:not(:has(~ .tab.last-in-row)),
+    .tab.active:not(.last-in-row):not(
+        :has(~ .tab.last-in-row ~ .tab.last-in-row)
+    )
+) {
+    border-color:
+        var(--ui-tab-border-color)
+        var(--ui-tab-border-color)
+        transparent !important;
+    border-radius:
+        var(--ui-radius) var(--ui-radius) 0 0 !important;
+    overflow: visible !important;
+}
+
+/* Remove the divider only beneath an active final-row tab. */
+.monaco-workbench .part.editor .tabs-container > :is(
+    .tab.active.last-in-row:not(:has(~ .tab.last-in-row)),
+    .tab.active:not(.last-in-row):not(
+        :has(~ .tab.last-in-row ~ .tab.last-in-row)
+    )
+)::after {
+    background-color: var(--vscode-editor-background);
+    bottom: -1px;
+    content: "";
+    height: 2px;
+    left: 1px;
+    pointer-events: none;
+    position: absolute;
+    right: 1px;
+}
+
+.monaco-workbench .part.editor
+.tabs-container > .tab .tab-border-top-container {
+    display: none !important;
+}
+
+.monaco-workbench .part.editor > .content
+.editor-group-container > .title .editor-actions {
+    display: flex !important;
+    flex:
+        0 0 calc(155px + var(--ui-gap)) !important;
+    justify-content: flex-end !important;
+    margin-right: 0 !important;
+    min-width:
+        calc(155px + var(--ui-gap)) !important;
+    padding-right: var(--ui-gap) !important;
+    width:
+        calc(155px + var(--ui-gap)) !important;
+}
+
+.monaco-workbench .part.sidebar:focus-within,
+.monaco-workbench .part.panel:focus-within,
+.monaco-workbench .part.editor > .content
+> .grid-view-container:focus-within {
+    border-color: var(--ui-border-focused-color) !important;
+}
+
+.monaco-workbench .part.editor
+.monaco-editor .margin > .glyph-margin {
+    background-color: #1e1e1e !important;
+}
+
+.monaco-workbench .part.editor
+.monaco-editor
+.current-line.current-line-margin {
+    background: linear-gradient(
+        to right,
+        #272727 0 21px,
+        var(--vscode-editor-lineHighlightBackground) 21px
+    ) !important;
+    background-origin: border-box !important;
+    border-left:
+        var(--ui-current-line-accent-border-width)
+        solid #9184ee !important;
+    box-sizing: border-box !important;
+}
+
+.monaco-workbench {
+    --ui-gap: 8px;
+    --ui-panel-title-height: 35px;
+    --ui-pane-header-height: 22px;
+    --ui-radius: 5px;
+    --ui-sidebar-scrollbar-padding: 4px;
+    --ui-scrollbar-padding: 6px;
+    --ui-scrollbar-width: calc(
+        var(--ui-scrollbar-padding-left) +
+        var(--ui-scrollbar-thumb-width) +
+        var(--ui-scrollbar-padding-right)
+    );
+    --ui-scrollbar-padding-left: 6px;
+    --ui-scrollbar-padding-right: 6px;
+    --ui-scrollbar-track-top-gap: 1px;
+    --ui-scrollbar-track-bottom-gap: 2px;
+    --ui-scrollbar-thumb-top-gap: 6px;
+    --ui-scrollbar-thumb-bottom-gap: 6px;
+    --ui-scrollbar-thumb-width: 8px;
+    --ui-scrollbar-thumb-min-height: 40px;
+    --ui-scrollbar-tip-inset:
+        calc(var(--ui-scrollbar-thumb-width) / 2);
+    --ui-tab-height: 28px;
+    --ui-border-color: #454545;
+    --ui-border-focused-color: #9184ee;
+    --ui-current-line-accent-border-width: 5px;
+    --vscode-font-family: "Segoe UI", sans-serif;
+    background-color: #1c1c1c !important;
+    font-family: "Segoe UI", sans-serif !important;
+}
+
+.monaco-workbench .part.editor
+.monaco-editor .scrollbar.vertical > .slider {
+    pointer-events: none !important;
+}
+
+body .monaco-workbench .part.editor
+.monaco-editor
+.monaco-scrollable-element.editor-scrollable
+> .scrollbar.vertical
+> .slider {
+    contain: none !important;
+    overflow: visible !important;
+    pointer-events: none !important;
+}
+
+.monaco-workbench .part.activitybar
+.monaco-action-bar
+.action-item.checked
+.active-item-indicator::before {
+    background-color:
+        var(--vscode-activityBar-activeBorder) !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    height: 16px !important;
+    left: 2px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 3px !important;
+}

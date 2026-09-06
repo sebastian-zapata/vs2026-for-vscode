@@ -44,6 +44,11 @@ Corporation.
 
 ## License
 
-Licensed under the [MIT License](LICENSE).
+The source code and configuration files are licensed under the
+[MIT License](LICENSE).
+
+[Sebastian Zapata Console](fonts/SebastianZapataConsole) is licensed separately
+under the
+[SIL Open Font License, Version 1.1](fonts/SebastianZapataConsole/OFL.txt).
 
 Copyright © 2026 Sebastian Zapata.

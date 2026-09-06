@@ -1,4 +1,7 @@
-# Visual Studio 2026-inspired UX for VS Code (Work in progress, do NOT use yet)
+# Visual Studio 2026-inspired UX for VS Code (
+
+> [!WARNING]
+> Work in progress repo, do NOT use yet!
 
 A rather niche VS Code customization for C++ developers. I’ve used Visual
 Studio for many years and currently use Visual Studio 2026, but I also have to

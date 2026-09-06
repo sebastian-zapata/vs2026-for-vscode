@@ -30,8 +30,8 @@ Visual Studio.
 * FreeType tuning for Visual Studio-like text rendering on Linux
 * C++ syntax-color customizations
 
-The customization consists of VS Code settings together with custom CSS and
-JavaScript loaded through
+The customization consists of VS Code settings, a custom coding font, and
+custom CSS and JavaScript loaded through
 [Custom CSS and JS Loader](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css).
 
 ## Disclaimer

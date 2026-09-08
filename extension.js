@@ -11,6 +11,8 @@ const LOADER_EXTENSION_ID = "be5invis.vscode-custom-css";
 const LOADER_UPDATE_COMMAND = "extension.updateCustomCSS";
 const IMPORTS_SECTION = "vscode_custom_css";
 const IMPORTS_PROPERTY = "imports";
+const WORKBENCH_SECTION = "workbench";
+const MODERN_UI_PROPERTY = "experimental.modernUI";
 const APPLIED_STATE_KEY = "appliedState";
 const MANAGED_IMPORTS_KEY = "managedImports";
 const FONT_FILE_NAME = "SebastianZapataConsole.ttf";
@@ -20,6 +22,24 @@ const LEGACY_IMPORTS = new Set([
   "file://${userHome}/.config/Code/User/custom.css",
   "file://${userHome}/.config/Code/User/custom.js"
 ]);
+
+async function disableModernUi() {
+  const configuration =
+    vscode.workspace.getConfiguration(WORKBENCH_SECTION);
+  const inspection = configuration.inspect(MODERN_UI_PROPERTY);
+
+  if (inspection && inspection.globalValue === false) {
+    return false;
+  }
+
+  await configuration.update(
+    MODERN_UI_PROPERTY,
+    false,
+    vscode.ConfigurationTarget.Global
+  );
+
+  return true;
+}
 
 async function createFontImport(context) {
   const fontUri = vscode.Uri.joinPath(
@@ -56,7 +76,7 @@ async function createFontImport(context) {
     Buffer.from(fontStyle, "utf8")
   );
 
-  return fontStyleUri.toString();
+  return vscode.Uri.file(fontStyleUri.fsPath).toString();
 }
 
 async function getBundledImports(context) {
@@ -187,6 +207,7 @@ function getErrorMessage(error) {
 
 async function applyCustomizations(context) {
   try {
+    const modernUiChanged = await disableModernUi();
     const loaderExtension =
       vscode.extensions.getExtension(LOADER_EXTENSION_ID);
 
@@ -213,6 +234,7 @@ async function applyCustomizations(context) {
       context.globalState.get(APPLIED_STATE_KEY);
 
     if (
+      !modernUiChanged &&
       !importUpdate.changed &&
       statesEqual(previousState, currentState)
     ) {

@@ -1,0 +1,283 @@
+{
+  "name": "vs2026-for-vscode",
+  "displayName": "VS2026 for VS Code",
+  "description": "Visual Studio 2026-inspired UI and UX for C++ development.",
+  "version": "0.1.0",
+  "publisher": "sebastian-zapata",
+  "license": "MIT",
+  "author": {
+    "name": "Sebastian Zapata"
+  },
+  "engines": {
+    "vscode": "^1.135.0"
+  },
+  "categories": [
+    "Themes",
+    "Other"
+  ],
+  "keywords": [
+    "Visual Studio 2026",
+    "C++",
+    "theme",
+    "UI",
+    "UX",
+    "Linux"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
+  "extensionDependencies": [
+    "be5invis.vscode-custom-css"
+  ],
+    "contributes": {
+    "configurationDefaults": {
+      "workbench.secondarySideBar.defaultVisibility": "hidden",
+      "workbench.editor.wrapTabs": true,
+      "window.density.editorTabHeight": "default",
+      "breadcrumbs.enabled": false,
+      "workbench.colorTheme": "Dark+",
+      "workbench.colorCustomizations": {
+        "activityBar.background": "#1c1c1c",
+        "activityBar.foreground": "#bebbb3",
+        "activityBar.inactiveForeground": "#5e5d5a",
+        "activityBar.activeBorder": "#9184ee",
+        "statusBar.background": "#141414",
+        "statusBar.debuggingBackground": "#141414",
+        "statusBar.noFolderBackground": "#141414",
+        "editor.background": "#232221",
+        "editorGroupHeader.tabsBackground": "#262626",
+        "editor.lineHighlightBackground": "#2b2a29",
+        "sideBar.background": "#282828",
+        "sideBarSectionHeader.border": "#454545",
+        "scrollbar.shadow": "#00000000",
+        "titleBar.activeBackground": "#1c1c1c",
+        "titleBar.inactiveBackground": "#1c1c1c"
+      },
+      "editor.renderLineHighlight": "all",
+      "editor.stickyScroll.enabled": false,
+      "workbench.tree.enableStickyScroll": false,
+      "editor.fontFamily": "'Sebastian Zapata Console', monospace",
+      "editor.lineHeight": 1.34,
+      "editor.rulers": [
+        {
+          "column": 80,
+          "color": "#5d5d5d"
+        }
+      ],
+      "[Log]": {
+        "editor.fontFamily": "'Consolas', monospace",
+        "editor.fontSize": 13.5,
+        "editor.wordWrap": "off"
+      },
+      "editor.mouseWheelZoom": true,
+      "editor.mouseWheelScrollSensitivity": 1,
+      "editor.smoothScrolling": false,
+      "editor.fontSize": 15.15,
+      "editor.bracketPairColorization.enabled": false,
+      "editor.matchBrackets": "never",
+      "editor.tokenColorCustomizations": {
+        "textMateRules": [
+          {
+            "scope": [
+              "variable.other.unknown.typename.cpp"
+            ],
+            "settings": {
+              "foreground": "#569cd6"
+            }
+          },
+          {
+            "scope": [
+              "variable.other.object.access",
+              "variable.other.property"
+            ],
+            "settings": {
+              "foreground": "#cdcdc2"
+            }
+          },
+          {
+            "scope": [
+              "entity.other.attribute-name.pragma.preprocessor"
+            ],
+            "settings": {
+              "foreground": "#9b9b9b"
+            }
+          },
+          {
+            "scope": [
+              "meta.preprocessor.conditional entity.name.function.preprocessor"
+            ],
+            "settings": {
+              "foreground": "#cdcdc2"
+            }
+          },
+          {
+            "scope": [
+              "comment markup.inline.raw"
+            ],
+            "settings": {
+              "foreground": "#7a7978"
+            }
+          },
+          {
+            "scope": [
+              "storage.type.class.doxygen",
+              "storage.type.class.gtkdoc.cpp"
+            ],
+            "settings": {
+              "foreground": "#b4b1ad"
+            }
+          },
+          {
+            "scope": [
+              "comment.block.documentation.cpp variable.parameter.cpp"
+            ],
+            "settings": {
+              "foreground": "#9c9a96"
+            }
+          },
+          {
+            "scope": [
+              "comment"
+            ],
+            "settings": {
+              "foreground": "#7a7978"
+            }
+          },
+          {
+            "scope": [
+              "constant.character.escape"
+            ],
+            "settings": {
+              "foreground": "#ffd68f"
+            }
+          },
+          {
+            "scope": [
+              "meta.head.function.definition.special.constructor.cpp entity.name.type.parameter",
+              "meta.head.function.definition.special.constructor.cpp variable.other.unknown"
+            ],
+            "settings": {
+              "foreground": "#cdcdc2"
+            }
+          },
+          {
+            "scope": [
+              "meta.body.class.cpp variable.other.declare.cpp"
+            ],
+            "settings": {
+              "foreground": "#cdcdc2"
+            }
+          },
+          {
+            "scope": [
+              "storage.modifier.pointer",
+              "storage.modifier.reference"
+            ],
+            "settings": {
+              "foreground": "#b4b4b4"
+            }
+          },
+          {
+            "scope": [
+              "keyword.operator",
+              "punctuation.section",
+              "punctuation.separator",
+              "punctuation.terminator",
+              "punctuation.accessor",
+              "punctuation.parenthesis",
+              "punctuation.bracket",
+              "punctuation.definition.parameters",
+              "punctuation.definition.begin.bracket",
+              "punctuation.definition.end.bracket"
+            ],
+            "settings": {
+              "foreground": "#b4b4b4"
+            }
+          },
+          {
+            "scope": [
+              "keyword.operator.delete",
+              "keyword.other.using",
+              "keyword.other.directive.using"
+            ],
+            "settings": {
+              "foreground": "#569cd6"
+            }
+          },
+          {
+            "scope": [
+              "keyword.control"
+            ],
+            "settings": {
+              "foreground": "#d8a0df"
+            }
+          },
+          {
+            "scope": [
+              "keyword.control.directive",
+              "punctuation.definition.directive"
+            ],
+            "settings": {
+              "foreground": "#9b9b9b"
+            }
+          },
+          {
+            "scope": [
+              "constant.language.nullptr"
+            ],
+            "settings": {
+              "foreground": "#569cd6"
+            }
+          },
+          {
+            "scope": [
+              "string.quoted.double",
+              "constant.other.placeholder"
+            ],
+            "settings": {
+              "foreground": "#d69d85"
+            }
+          },
+          {
+            "scope": [
+              "punctuation.definition.string.begin",
+              "punctuation.definition.string.end"
+            ],
+            "settings": {
+              "foreground": "#e8c9bb"
+            }
+          }
+        ]
+      },
+      "editor.semanticTokenColorCustomizations": {
+        "rules": {
+          "memberOperatorOverload": "#b4b4b4",
+          "enum": "#b8d7a3",
+          "enumMember": "#b8d7a3",
+          "macro": "#beb7ff",
+          "namespace": "#cdcdc2",
+          "parameter": "#9b9893",
+          "property": "#cdcdc2",
+          "property.static": "#cdcdc2",
+          "variable.global": "#cdcdc2"
+        }
+      },
+      "editor.minimap.enabled": false,
+      "editor.scrollbar.vertical": "visible",
+      "editor.scrollbar.verticalScrollbarSize": 20,
+      "editor.scrollbar.verticalSliderSize": 8
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sebastian-zapata/vs2026-for-vscode.git"
+  },
+  "homepage": "https://github.com/sebastian-zapata/vs2026-for-vscode",
+  "bugs": {
+    "url": "https://github.com/sebastian-zapata/vs2026-for-vscode/issues"
+  }
+}

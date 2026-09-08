@@ -34,6 +34,42 @@ The customization consists of VS Code settings, a custom coding font, and
 custom CSS and JavaScript loaded through
 [Custom CSS and JS Loader](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css).
 
+## Installation
+
+Install **VS2026 for VS Code** from the Visual Studio Marketplace.
+
+The required [Custom CSS and JS Loader][custom-css-loader] is installed as an
+extension dependency. VS2026 then automatically:
+
+1. Loads its bundled font inside VS Code.
+2. Configures its bundled CSS and JavaScript.
+3. Applies its colors, fonts, layout, and editor defaults.
+4. Invokes the loader and requests a restart when required.
+
+No manual file copying, font installation, or `settings.json` editing is
+required.
+
+The loader must be able to modify the VS Code installation. On Windows,
+applying the customization may require starting VS Code as an administrator.
+If VS Code reports that its installation is corrupt afterward, select
+**Don’t Show Again**. This warning is caused by the loader modifying the
+workbench files.
+
+Any setting in `settings.json` (user settings) will take precedence over
+this extension’s defaults.
+
+## Compatibility
+
+VS2026 for VS Code requires VS Code 1.135.0 or later. It was developed and
+tested primarily on Zorin OS Linux. Its custom CSS and JavaScript depend on
+internal VS Code workbench structure and may require updates when that
+structure changes.
+
+## Removal
+
+Before uninstalling VS2026 for VS Code, run **Disable Custom CSS and JS** from
+the Command Palette and restart VS Code.
+
 ## Disclaimer
 
 This is an independent project and is not affiliated with, sponsored by, or
@@ -52,3 +88,5 @@ under the
 [SIL Open Font License, Version 1.1](fonts/SebastianZapataConsole/OFL.txt).
 
 Copyright © 2026 Sebastian Zapata.
+
+[custom-css-loader]: https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css

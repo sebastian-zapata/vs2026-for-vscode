@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: MIT
  */
  
- (() => {
+(() => {
     const editorSelector =
         ".monaco-workbench .part.editor .monaco-editor";
     const tabsSelector =

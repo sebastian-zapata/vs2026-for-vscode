@@ -4,6 +4,54 @@
  * Copyright (c) 2026 Sebastian Zapata
  * SPDX-License-Identifier: MIT
  */
+ 
+ (() => {
+    const editorSelector =
+        ".monaco-workbench .part.editor .monaco-editor";
+    const tabsSelector =
+        ".monaco-workbench .part.editor .tabs-container";
+
+    function hasLayoutTargets() {
+        return document.querySelector(editorSelector) &&
+            document.querySelector(tabsSelector);
+    }
+
+    function dispatchLayoutRefresh() {
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                window.dispatchEvent(new Event("resize"));
+            });
+        });
+    }
+
+    async function refreshInitialLayout() {
+        await document.fonts.load(
+            '15px "Sebastian Zapata Console"'
+        );
+        await document.fonts.ready;
+
+        const observer = new MutationObserver(() => {
+            if (!hasLayoutTargets()) {
+                return;
+            }
+
+            observer.disconnect();
+            dispatchLayoutRefresh();
+        });
+
+        observer.observe(document.documentElement, {
+            childList: true,
+            subtree: true
+        });
+
+        if (hasLayoutTargets()) {
+            observer.disconnect();
+            dispatchLayoutRefresh();
+        }
+    }
+
+    void refreshInitialLayout();
+})();
 
 (() => {
     const titleSelector =

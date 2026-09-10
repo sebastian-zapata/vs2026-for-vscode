@@ -1,0 +1,9 @@
+{
+    "workbench.experimental.modernUI": true,
+    "vscode_custom_css.imports": [
+        "file://${userHome}/.config/Code/User/custom.css"
+    ],
+    "editor.minimap.enabled": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "extensions.ignoreRecommendations": true
+}

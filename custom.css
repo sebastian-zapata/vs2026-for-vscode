@@ -1,3 +1,9 @@
+/****************************************************************************
+**
+**                         Panel and tab borders
+**
+*****************************************************************************/
+
 /* Shared values: customize only here. */
 .monaco-workbench.modern-ui {
     --vs-focused-border: #9184ee;
@@ -131,6 +137,23 @@
             var(--vs-tab-radius) var(--vs-tab-radius)
             var(--vs-zero) var(--vs-zero) !important;
         box-shadow: none !important;
+    }
+
+    /* Remove the outer-left group's native tab-row inset. */
+    & .monaco-grid-branch-node
+    > .monaco-split-view2.horizontal
+    > .monaco-scrollable-element
+    > .split-view-container
+    > .split-view-view:first-child
+    .editor-group-container > .title
+    > .tabs-and-actions-container {
+        padding-left: var(--vs-zero);
+    }
+
+    /* Join the first active tab to each editor's left frame. */
+    & .editor-group-container
+    .tabs-container > .tab:first-child.active > .tab-fill {
+        left: var(--vs-zero) !important;
     }
 }
 
@@ -361,3 +384,9 @@
     );
     background-color: var(--vs-shell-background);
 }
+
+/****************************************************************************
+**
+**                      Other content below this
+**
+*****************************************************************************/

@@ -283,6 +283,14 @@
     ) !important;
 }
 
+/* Fill the editor row when a bottom panel owns the lower edge. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor.floating-editor-outer-top:not(
+    .floating-editor-outer-bottom
+) {
+    height: var(--vs-full-width) !important;
+}
+
 .monaco-workbench.modern-ui.floating-panels
 .part.editor > .content,
 .monaco-workbench.modern-ui.floating-panels

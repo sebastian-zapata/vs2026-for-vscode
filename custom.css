@@ -140,6 +140,9 @@
     }
 
     /* Remove the outer-left group's native tab-row inset. */
+    &:not(:has(.monaco-split-view2.horizontal))
+    .editor-group-container > .title
+    > .tabs-and-actions-container,
     & .monaco-grid-branch-node
     > .monaco-split-view2.horizontal
     > .monaco-scrollable-element
@@ -234,6 +237,36 @@
 > .monaco-scrollable-element
 > .split-view-container
 > .split-view-view:last-child
+.editor-instance > .monaco-editor
+> .overflow-guard
+> .monaco-scrollable-element.editor-scrollable {
+    right: var(--vs-zero) !important;
+    width: auto !important;
+}
+
+/* Reclaim the outer-right frame space without a horizontal split. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:not(:has(.monaco-split-view2.horizontal))
+.editor-group-container > .editor-container,
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:not(:has(.monaco-split-view2.horizontal))
+.editor-group-container > .editor-container
+> .editor-instance {
+    width: var(--vs-full-width) !important;
+}
+
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:not(:has(.monaco-split-view2.horizontal))
+.editor-instance > .monaco-editor,
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:not(:has(.monaco-split-view2.horizontal))
+.editor-instance > .monaco-editor
+> .overflow-guard {
+    width: var(--vs-full-width) !important;
+}
+
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:not(:has(.monaco-split-view2.horizontal))
 .editor-instance > .monaco-editor
 > .overflow-guard
 > .monaco-scrollable-element.editor-scrollable {

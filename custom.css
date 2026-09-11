@@ -320,10 +320,10 @@
     padding-bottom: var(--vs-editor-frame-reservation);
 }
 
-/* Remove the native separator replaced by individual editor frames. */
+/* Remove the native separators replaced by individual editor frames. */
 .monaco-workbench.modern-ui.floating-panels
 .part.editor
-.monaco-split-view2.horizontal.separator-border
+.monaco-split-view2.separator-border
 > .monaco-scrollable-element
 > .split-view-container
 > .split-view-view:not(:first-child)::before {

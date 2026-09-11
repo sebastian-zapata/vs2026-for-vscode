@@ -439,15 +439,25 @@
         var(--vs-zero) !important;
 }
 
-/* Fit each horizontal scrollbar inside its visual editor frame. */
+/* Hide the non-scrollable horizontal editor-grid scrollbar. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor .monaco-grid-branch-node
+> .monaco-split-view2.horizontal
+> .monaco-scrollable-element
+> .scrollbar.horizontal {
+    display: none !important;
+}
+
+/* Keep horizontal scrollbar thumbs on the integer pixel grid. */
 .monaco-workbench.modern-ui.floating-panels
 .part.editor .monaco-grid-branch-node
 > .monaco-split-view2.horizontal
 > .monaco-scrollable-element
 > .split-view-container
 > .split-view-view:not(:last-child)
-.monaco-scrollable-element.editor-scrollable {
-    container-type: inline-size;
+.monaco-scrollable-element.editor-scrollable
+> .scrollbar.horizontal {
+    transform: none !important;
 }
 
 .monaco-workbench.modern-ui.floating-panels
@@ -457,17 +467,57 @@
 > .split-view-container
 > .split-view-view:not(:last-child)
 .monaco-scrollable-element.editor-scrollable
-> .scrollbar.horizontal {
-    transform-origin: left center;
-    transform: scaleX(
-        calc(
-            (
-                100cqw -
-                var(--vs-editor-group-gap)
-            ) /
-            100cqw
-        )
-    );
+> .scrollbar.horizontal
+> .slider {
+    background: transparent !important;
+}
+
+.monaco-workbench.modern-ui.floating-panels
+.part.editor .monaco-grid-branch-node
+> .monaco-split-view2.horizontal
+> .monaco-scrollable-element
+> .split-view-container
+> .split-view-view:not(:last-child)
+.monaco-scrollable-element.editor-scrollable
+> .scrollbar.horizontal
+> .slider::after {
+    content: "";
+    position: absolute;
+    inset:
+        var(--vs-zero)
+        var(--vs-editor-group-gap)
+        var(--vs-zero)
+        var(--vs-zero);
+    pointer-events: none;
+    border-radius: inherit;
+    background-color:
+        var(--vscode-scrollbarSlider-background);
+}
+
+.monaco-workbench.modern-ui.floating-panels
+.part.editor .monaco-grid-branch-node
+> .monaco-split-view2.horizontal
+> .monaco-scrollable-element
+> .split-view-container
+> .split-view-view:not(:last-child)
+.monaco-scrollable-element.editor-scrollable
+> .scrollbar.horizontal
+> .slider:hover::after {
+    background-color:
+        var(--vscode-scrollbarSlider-hoverBackground);
+}
+
+.monaco-workbench.modern-ui.floating-panels
+.part.editor .monaco-grid-branch-node
+> .monaco-split-view2.horizontal
+> .monaco-scrollable-element
+> .split-view-container
+> .split-view-view:not(:last-child)
+.monaco-scrollable-element.editor-scrollable
+> .scrollbar.horizontal
+> .slider.active::after {
+    background-color:
+        var(--vscode-scrollbarSlider-activeBackground);
 }
 
 /* Separate vertically stacked editor groups. */

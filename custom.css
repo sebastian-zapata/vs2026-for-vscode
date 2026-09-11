@@ -14,6 +14,9 @@
     --vs-editor-outline-layer: 10;
     --vs-editor-radius: var(--vscode-cornerRadius-large);
 
+    --vs-editor-inner-radius:
+        calc(var(--vs-editor-radius) - var(--vs-border-width));
+
     /* Between editors-gap variables */
     --vs-editor-gap-layer:
         calc(var(--vs-editor-outline-layer) - 1);
@@ -71,9 +74,10 @@
         --vs-tab-outline: var(--vs-focused-border);
     }
 
-    /* Draw the editor's top edge underneath its tab row. */
+    /* Paint and round each editor's tab-bar surface. */
     & .editor-group-container > .title
     > .tabs-and-actions-container {
+        background-color: var(--vs-editor-background) !important;
         background-image: linear-gradient(
             var(--vs-tab-outline),
             var(--vs-tab-outline)
@@ -82,6 +86,9 @@
         background-size:
             var(--vs-full-width) var(--vs-border-width) !important;
         background-repeat: no-repeat !important;
+        border-radius:
+            var(--vs-editor-radius) var(--vs-editor-radius)
+            var(--vs-zero) var(--vs-zero);
     }
 
     /* Continue the editor frame across the breadcrumb row. */
@@ -100,9 +107,47 @@
             !important;
     }
 
-    /* Provide the positioning context for the overlay frame. */
+    /* Separate the rounded fill from the overlay frame. */
     & .editor-group-container > .editor-container {
         position: relative;
+        background-color: transparent !important;
+    }
+
+    /* Keep the editor background inside its permanent frame. */
+    & .editor-group-container > .editor-container
+    > .editor-instance {
+        box-sizing: content-box;
+        padding-bottom: var(--vs-editor-frame-reservation);
+        background-color: var(--vs-editor-background);
+        clip-path: inset(
+            var(--vs-zero)
+            calc(
+                var(
+                    --vs-editor-frame-right-inset,
+                    var(--vs-zero)
+                ) +
+                var(--vs-border-width)
+            )
+            calc(
+                var(
+                    --vs-editor-frame-bottom-inset,
+                    var(--vs-zero)
+                ) +
+                var(--vs-border-width)
+            )
+            calc(
+                var(
+                    --vs-editor-frame-left-inset,
+                    var(--vs-zero)
+                ) +
+                var(--vs-border-width)
+            )
+            round
+            var(--vs-zero)
+            var(--vs-zero)
+            var(--vs-editor-inner-radius)
+            var(--vs-editor-inner-radius)
+        );
     }
 
     /* Draw the editor frame above its contents. */
@@ -112,7 +157,11 @@
         top: var(--vs-zero);
         right:
             var(--vs-editor-frame-right-inset, var(--vs-zero));
-        bottom: var(--vs-zero);
+        bottom:
+            var(
+                --vs-editor-frame-bottom-inset,
+                var(--vs-zero)
+            );
         left:
             var(--vs-editor-frame-left-inset, var(--vs-zero));
         z-index: var(--vs-editor-outline-layer);
@@ -158,6 +207,20 @@
     .tabs-container > .tab:first-child.active > .tab-fill {
         left: var(--vs-zero) !important;
     }
+}
+
+/* Leave bottom-corner rendering to the individual editor frames. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor {
+    border-bottom-left-radius: var(--vs-zero) !important;
+    border-bottom-right-radius: var(--vs-zero) !important;
+}
+
+/* Provide the shell-colored underlay between editor frames. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor > .content {
+    border-radius: var(--vs-zero);
+    background-color: var(--vs-shell-background) !important;
 }
 
 /* Reclaim the reserved frame space at the outer-right edge. */
@@ -405,6 +468,121 @@
             100cqw
         )
     );
+}
+
+/* Separate vertically stacked editor groups. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor .monaco-grid-branch-node
+> .monaco-split-view2.vertical
+> .monaco-scrollable-element
+> .split-view-container
+> .split-view-view:not(:first-child) {
+    --vs-editor-stack-offset:
+        var(--vs-editor-group-half-gap);
+    --vs-editor-frame-bottom-inset:
+        var(--vs-editor-stack-offset);
+}
+
+.monaco-workbench.modern-ui.floating-panels
+.part.editor .monaco-grid-branch-node
+> .monaco-split-view2.vertical
+> .monaco-scrollable-element
+> .split-view-container
+> .split-view-view:not(:last-child) {
+    --vs-editor-frame-bottom-inset:
+        calc(
+            var(--vs-editor-frame-reservation) +
+            var(--vs-editor-group-half-gap) +
+            var(--vs-editor-stack-offset, var(--vs-zero))
+        );
+}
+
+.monaco-workbench.modern-ui.floating-panels
+.part.editor .monaco-grid-branch-node
+> .monaco-split-view2.vertical
+> .monaco-scrollable-element
+> .split-view-container
+> .split-view-view:not(:first-child)
+.editor-group-container {
+    position: relative;
+    top: var(--vs-editor-stack-offset);
+}
+
+/* Keep horizontal scrollbars inside vertically inset frames. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor .monaco-grid-branch-node
+> .monaco-split-view2.vertical
+> .monaco-scrollable-element
+> .split-view-container
+> .split-view-view
+.editor-group-container > .editor-container
+.editor-instance > .monaco-editor
+> .overflow-guard
+> .monaco-scrollable-element.editor-scrollable
+> .scrollbar.horizontal {
+    bottom:
+        var(
+            --vs-editor-frame-bottom-inset,
+            var(--vs-zero)
+        ) !important;
+}
+
+/* Keep vertical scrollbar thumbs on the integer pixel grid. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor
+.monaco-scrollable-element.editor-scrollable
+> .scrollbar.vertical
+> .slider {
+    background: transparent !important;
+}
+
+.monaco-workbench.modern-ui.floating-panels
+.part.editor
+.monaco-scrollable-element.editor-scrollable
+> .scrollbar.vertical
+> .slider::after {
+    content: "";
+    position: absolute;
+    inset:
+        var(--vs-zero)
+        var(--vs-zero)
+        var(
+            --vs-editor-frame-bottom-inset,
+            var(--vs-zero)
+        )
+        var(--vs-zero);
+    pointer-events: none;
+    border-radius: inherit;
+    background-color:
+        var(--vscode-scrollbarSlider-background);
+}
+
+.monaco-workbench.modern-ui.floating-panels
+.part.editor
+.monaco-scrollable-element.editor-scrollable
+> .scrollbar.vertical
+> .slider:hover::after {
+    background-color:
+        var(--vscode-scrollbarSlider-hoverBackground);
+}
+
+.monaco-workbench.modern-ui.floating-panels
+.part.editor
+.monaco-scrollable-element.editor-scrollable
+> .scrollbar.vertical
+> .slider.active::after {
+    background-color:
+        var(--vscode-scrollbarSlider-activeBackground);
+}
+
+/* Use the horizontal resize sash as the vertical editor gap. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor .monaco-grid-branch-node
+> .monaco-split-view2.vertical
+> .sash-container
+> .monaco-sash.horizontal {
+    z-index: var(--vs-editor-gap-layer);
+    background-color: var(--vs-shell-background);
 }
 
 /* Use the existing resize sash as the visual gap. */

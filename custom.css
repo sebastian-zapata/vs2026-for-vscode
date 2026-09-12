@@ -8,6 +8,7 @@
 .monaco-workbench.modern-ui {
     --vs-focused-border: #9184ee;
     --vs-tab-radius: 5px;
+    --vscode-cornerRadius-large: var(--vs-tab-radius);
     --vs-zero: 0px;
     --vs-full-width: 100%;
 

@@ -193,17 +193,34 @@
             var(--vs-editor-radius) var(--vs-editor-radius);
     }
 
-    /* Extend the active fill through the native bottom gutter. */
+    /* Outline active tabs independently of their visual row. */
     & .editor-group-container
     .tabs-container > .tab.active > .tab-fill {
         bottom: var(--vs-tab-bottom-offset) !important;
         border:
-            var(--vs-border-width) solid var(--vs-tab-outline) !important;
-        border-bottom: var(--vs-zero) !important;
-        border-radius:
-            var(--vs-tab-radius) var(--vs-tab-radius)
-            var(--vs-zero) var(--vs-zero) !important;
+            var(--vs-border-width) solid var(--vs-tab-outline)
+            !important;
+        border-radius: var(--vs-tab-radius) !important;
         box-shadow: none !important;
+    }
+
+    /* Square only tab faces in the final visual row. */
+    & .editor-group-container
+    .tabs-container > .tab:not(
+        :has(~ .tab.last-in-row ~ .tab.last-in-row),
+        .last-in-row:has(~ .tab.last-in-row)
+    ) > .tab-fill {
+        border-bottom-left-radius: var(--vs-zero) !important;
+        border-bottom-right-radius: var(--vs-zero) !important;
+    }
+
+    /* Join only the final row's active tab to the editor. */
+    & .editor-group-container
+    .tabs-container > .tab.active:not(
+        :has(~ .tab.last-in-row ~ .tab.last-in-row),
+        .last-in-row:has(~ .tab.last-in-row)
+    ) > .tab-fill {
+        border-bottom: var(--vs-zero) !important;
     }
 
     /* Remove the outer-left group's native tab-row inset. */

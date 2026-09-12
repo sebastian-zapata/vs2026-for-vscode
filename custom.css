@@ -203,12 +203,11 @@
         padding-left: var(--vs-zero);
     }
 
-    /* Join each row's first active tab to the left frame. */
+    /* Remove gaps between adjacent tab faces in every state. */
     & .editor-group-container
-    .tabs-container > .tab:first-child.active > .tab-fill,
-    & .editor-group-container
-    .tabs-container > .tab.last-in-row
-    + .tab.active > .tab-fill {
+    .tabs-container > .tab > .tab-fill {
+        right: var(--vs-zero) !important;
+        bottom: var(--vs-tab-bottom-offset) !important;
         left: var(--vs-zero) !important;
     }
 
@@ -276,14 +275,19 @@
 }
 
 /*
- * Wrapping adds 2px above the rows. Move that reservation below them
- * without changing the tab bar's total height.
+ * Move wrapping's top reservation below the rows while preserving
+ * the tab bar's total height.
  */
 .monaco-workbench.modern-ui.floating-panels
 .part.editor:has(.tabs-container):not(:has(.two-tab-bars))
 .editor-group-container > .title
 > .tabs-and-actions-container.wrapping {
-    --vs-tab-face-shift: var(--vscode-spacing-size20);
+    --vs-tab-face-shift: var(--vs-zero);
+    --vs-tab-bottom-offset:
+        calc(
+            var(--vs-zero) -
+            var(--vscode-spacing-size20)
+        );
     --vs-tab-frame-lift:
         calc(
             var(--vscode-spacing-size40) +
@@ -291,6 +295,16 @@
         );
     padding-top: var(--vs-zero) !important;
     padding-bottom: var(--vscode-spacing-size20) !important;
+}
+
+/* Remove vertical gaps between wrapped tab faces. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:has(.tabs-container):not(:has(.two-tab-bars))
+.editor-group-container > .title
+> .tabs-and-actions-container.wrapping
+.tabs-container > .tab > .tab-fill {
+    top: var(--vs-tab-bottom-offset) !important;
+    bottom: var(--vs-tab-bottom-offset) !important;
 }
 
 /* Reposition the tabs visually without changing their dimensions. */

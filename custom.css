@@ -387,6 +387,19 @@
         !important;
 }
 
+/* Center single-row tab contents within their visible faces. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:has(.tabs-container):not(:has(.two-tab-bars))
+.editor-group-container
+.tabs-and-actions-container:not(.wrapping)
+.tabs-container > .tab
+> :is(.tab-label, .tab-actions) {
+    translate:
+        var(--vs-zero)
+        calc(var(--vs-tab-face-shift) / 2)
+        !important;
+}
+
 /* Center editor actions within the final wrapped tab row. */
 .monaco-workbench.modern-ui.floating-panels
 .part.editor:has(.tabs-container):not(:has(.two-tab-bars))

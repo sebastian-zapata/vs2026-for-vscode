@@ -291,6 +291,40 @@
     background-repeat: no-repeat !important;
 }
 
+/* Paint the editor boundary above inactive and hovered tabs. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:has(.tabs-container):not(:has(.two-tab-bars))
+.editor-group-container > .title
+> .tabs-and-actions-container::before {
+    content: "";
+    position: absolute;
+    right:
+        var(
+            --vs-editor-frame-right-inset,
+            var(--vs-zero)
+        );
+    bottom: var(--vs-tab-frame-lift);
+    left:
+        var(
+            --vs-editor-frame-left-inset,
+            var(--vs-zero)
+        );
+    z-index: var(--vs-editor-outline-layer);
+    height: var(--vs-border-width);
+    pointer-events: none;
+    background-color: var(--vs-tab-outline);
+}
+
+/* Keep the active tab connected above the editor boundary. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:has(.tabs-container):not(:has(.two-tab-bars))
+.editor-group-container
+.tabs-and-actions-container
+.tabs-container > .tab.active {
+    z-index:
+        calc(var(--vs-editor-outline-layer) + 1) !important;
+}
+
 /*
  * Move wrapping's top reservation below the rows while preserving
  * the tab bar's total height.

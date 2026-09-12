@@ -90,6 +90,23 @@
         border-radius:
             var(--vs-editor-radius) var(--vs-editor-radius)
             var(--vs-zero) var(--vs-zero);
+        clip-path: inset(
+            var(--vs-zero)
+            var(
+                --vs-editor-frame-right-inset,
+                var(--vs-zero)
+            )
+            var(--vs-zero)
+            var(
+                --vs-editor-frame-left-inset,
+                var(--vs-zero)
+            )
+            round
+            var(--vs-editor-radius)
+            var(--vs-editor-radius)
+            var(--vs-zero)
+            var(--vs-zero)
+        );
     }
 
     /* Continue the editor frame across the breadcrumb row. */

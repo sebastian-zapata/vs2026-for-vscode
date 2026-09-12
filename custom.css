@@ -62,7 +62,7 @@
 
 /* Join each active tab to its editor: single-row first pass. */
 .monaco-workbench.modern-ui.floating-panels
-.part.editor:has(.tabs-container):not(:has(.wrapping, .two-tab-bars)) {
+.part.editor:has(.tabs-container):not(:has(.two-tab-bars)) {
     /* Remove the shared frame and its reserved width. */
     border-width: var(--vs-zero) !important;
 
@@ -202,11 +202,135 @@
         padding-left: var(--vs-zero);
     }
 
-    /* Join the first active tab to each editor's left frame. */
+    /* Join each row's first active tab to the left frame. */
     & .editor-group-container
-    .tabs-container > .tab:first-child.active > .tab-fill {
+    .tabs-container > .tab:first-child.active > .tab-fill,
+    & .editor-group-container
+    .tabs-container > .tab.last-in-row
+    + .tab.active > .tab-fill {
         left: var(--vs-zero) !important;
     }
+
+    /* Match the outer frame at its top-left clipping edge. */
+    & .editor-group-container
+    .tabs-container > .tab:first-child.active > .tab-fill {
+        border-top-left-radius:
+            var(--vs-editor-radius) !important;
+    }
+}
+
+/* Align unchanged tab faces with the top of their tab bars. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:has(.tabs-container):not(:has(.two-tab-bars))
+.editor-group-container > .title
+> .tabs-and-actions-container {
+    --vs-tab-face-shift: var(--vscode-spacing-size40);
+    --vs-tab-frame-lift: var(--vscode-spacing-size40);
+
+    background-image:
+        linear-gradient(
+            var(--vs-tab-outline),
+            var(--vs-tab-outline)
+        ),
+        linear-gradient(
+            var(--vs-tab-outline),
+            var(--vs-tab-outline)
+        ),
+        linear-gradient(
+            var(--vs-tab-outline),
+            var(--vs-tab-outline)
+        ) !important;
+
+    background-position:
+        left var(
+            --vs-editor-frame-left-inset,
+            var(--vs-zero)
+        ) bottom var(--vs-tab-frame-lift),
+        left var(
+            --vs-editor-frame-left-inset,
+            var(--vs-zero)
+        ) bottom,
+        right var(
+            --vs-editor-frame-right-inset,
+            var(--vs-zero)
+        ) bottom !important;
+
+    background-size:
+        calc(
+            var(--vs-full-width) -
+            var(
+                --vs-editor-frame-left-inset,
+                var(--vs-zero)
+            ) -
+            var(
+                --vs-editor-frame-right-inset,
+                var(--vs-zero)
+            )
+        ) var(--vs-border-width),
+        var(--vs-border-width) var(--vs-tab-frame-lift),
+        var(--vs-border-width) var(--vs-tab-frame-lift)
+        !important;
+
+    background-repeat: no-repeat !important;
+}
+
+/*
+ * Wrapping adds 2px above the rows. Move that reservation below them
+ * without changing the tab bar's total height.
+ */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:has(.tabs-container):not(:has(.two-tab-bars))
+.editor-group-container > .title
+> .tabs-and-actions-container.wrapping {
+    --vs-tab-face-shift: var(--vscode-spacing-size20);
+    --vs-tab-frame-lift:
+        calc(
+            var(--vscode-spacing-size40) +
+            var(--vscode-spacing-size20)
+        );
+    padding-top: var(--vs-zero) !important;
+    padding-bottom: var(--vscode-spacing-size20) !important;
+}
+
+/* Reposition the tabs visually without changing their dimensions. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:has(.tabs-container):not(:has(.two-tab-bars))
+.editor-group-container
+.tabs-and-actions-container
+.tabs-container > .tab {
+    translate:
+        var(--vs-zero)
+        calc(var(--vs-zero) - var(--vs-tab-face-shift))
+        !important;
+}
+
+/* Center editor actions within the final wrapped tab row. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:has(.tabs-container):not(:has(.two-tab-bars))
+.editor-group-container > .title
+> .tabs-and-actions-container.wrapping
+> .editor-actions {
+    translate:
+        var(--vs-zero)
+        calc(
+            var(--vs-zero) -
+            var(--vs-tab-frame-lift) -
+            var(--vscode-spacing-size20)
+        )
+        !important;
+}
+
+/* Center action buttons within a single visual tab row. */
+.monaco-workbench.modern-ui.floating-panels
+.part.editor:has(.tabs-container):not(:has(.two-tab-bars))
+.editor-group-container > .title
+> .tabs-and-actions-container:not(.wrapping)
+> .editor-actions
+.action-label {
+    translate:
+        var(--vs-zero)
+        calc(var(--vs-zero) - var(--vscode-spacing-size20))
+        !important;
 }
 
 /* Leave bottom-corner rendering to the individual editor frames. */
